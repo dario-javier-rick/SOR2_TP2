@@ -79,8 +79,8 @@ main (int argc, char *argv[])
   NetDeviceContainer nodosIntermedios = p2pRR.Install(nodos);
   NetDeviceContainer leftRouterDevices, rightRouterDevices, senderDevices, receiverDevices;
 
-  leftRouterDevices.Add(cleft.Get(0));
-  leftRouterDevices.Add(cleft.Get(0));
+//  leftRouterDevices.Add(cleft.Get(0));
+//  leftRouterDevices.Add(cleft.Get(0));
 
 
   //PointToPointHelper pointToPoint;
@@ -92,24 +92,28 @@ main (int argc, char *argv[])
 //
 // Install the internet stack on the nodes
 //
+/*
   InternetStackHelper internet;
   internet.Install (nodos);
+*/
 
 //
 // We've got the "hardware" in place.  Now we need to add IP addresses.
 //
+/*
   NS_LOG_INFO ("Assign IP Addresses.");
   Ipv4AddressHelper ipv4;
   ipv4.SetBase ("10.1.1.0", "255.255.255.0");
   Ipv4InterfaceContainer i = ipv4.Assign (devices);
 
   NS_LOG_INFO ("Create Applications.");
+*/
 
 //
 // Create a BulkSendApplication and install it on node 0
 //
+/*
   uint16_t port = 9;  // well-known echo port number
-
 
   BulkSendHelper source ("ns3::TcpSocketFactory",
                          InetSocketAddress (i.GetAddress (1), port));
@@ -118,29 +122,35 @@ main (int argc, char *argv[])
   ApplicationContainer sourceApps = source.Install (nodos.Get (0));
   sourceApps.Start (Seconds (0.0));
   sourceApps.Stop (Seconds (10.0));
+*/
 
 //
 // Create a PacketSinkApplication and install it on node 1
 //
+/*
   PacketSinkHelper sink ("ns3::TcpSocketFactory",
                          InetSocketAddress (Ipv4Address::GetAny (), port));
   ApplicationContainer sinkApps = sink.Install (nodos.Get (1));
   sinkApps.Start (Seconds (0.0));
   sinkApps.Stop (Seconds (10.0));
+*/
 
 //
 // Set up tracing if enabled
 //
+/*
   if (tracing)
     {
       AsciiTraceHelper ascii;
       pointToPoint.EnableAsciiAll (ascii.CreateFileStream ("tcp-bulk-send.tr"));
       pointToPoint.EnablePcapAll ("tcp-bulk-send", false);
     }
+*/
 
 //
 // Now, do the actual simulation.
 //
+/*
   NS_LOG_INFO ("Run Simulation.");
   Simulator::Stop (Seconds (10.0));
   Simulator::Run ();
@@ -149,4 +159,5 @@ main (int argc, char *argv[])
 
   Ptr<PacketSink> sink1 = DynamicCast<PacketSink> (sinkApps.Get (0));
   std::cout << "Total Bytes Received: " << sink1->GetTotalRx () << std::endl;
+*/
 }
